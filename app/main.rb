@@ -1,10 +1,20 @@
 # Let player choose a coat color.
 def select_coat(args)
+    rect_color = {r: 0, g: 0, b: 0, a: 255}
+    rect_bounds = {x: 100, y: 150, w: 100, h: 100}
+    prim_marker = {primitive_marker: :solid}
+
     args.state.coat ||= 0
     args.state.coat_list ||= ["gray", "brown", "black"]
 
     if args.inputs.mouse.click
-        if args.inputs.mouse.x.between?(300, 300+48) && args.inputs.mouse.y.between?(500, 500+48)
+        if args.inputs.mouse.inside_rect? rect_bounds
+            args.state.coat += 1
+
+        end
+    end
+    
+    args.outputs.primitives << rect_bounds.merge(rect_color).merge(prim_marker)
 end   
 
 # Main function.

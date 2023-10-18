@@ -26,4 +26,5 @@ def tick args
    args.state.player << { x: 500, y: 500, w: 50, h: 50, }
 
    @buttons ||= []
+   select_coat(args)
 end
